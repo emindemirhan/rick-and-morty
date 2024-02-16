@@ -1,0 +1,22 @@
+<p-card
+  header="{{ chracterDetails.name }}"
+  subheader="{{ chracterDetails.status }}"
+  [style]="{ width: '300px' }"
+>
+  <ng-template pTemplate="header">
+    <img alt="Card" src="{{ chracterDetails.image }}" />
+  </ng-template>
+  <p class="flex flex-column gap-3">
+    <span>Created: {{ chracterDetails.created }}</span>
+    <span>Gender: {{ chracterDetails.gender }}</span>
+    <span>Species: {{ chracterDetails.species }}</span>
+    <span *ngIf="chracterDetails.location"
+      >Location: {{ chracterDetails.location.name }}</span
+    >
+    <span *ngIf="chracterDetails.origin"
+      >Origin: {{ chracterDetails.origin.name }}
+    </span>
+    <span *ngIf="chracterDetails.type">type: {{ chracterDetails.type }}</span>
+    <span>Status: {{ chracterDetails.status }}</span>
+  </p>
+</p-card>

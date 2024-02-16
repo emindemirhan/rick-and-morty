@@ -1,0 +1,20 @@
+<div class="flex flex-wrap gap">
+  <app-character-card
+    *ngFor="let item of characters.results"
+    [name]="item.name"
+    [status]="item.status"
+    [species]="item.species"
+    [gender]="item.gender"
+    [image]="item.image"
+    [id]="item.id"
+  >
+  </app-character-card>
+</div>
+
+<p-paginator
+  class="mx-auto"
+  (onPageChange)="onPageChange($event)"
+  [first]="0"
+  [rows]="20"
+  [totalRecords]="characters.info ? characters.info.count : 0"
+></p-paginator>
