@@ -14,6 +14,7 @@ import { CharacterDetailsComponent } from './components/character-details/charac
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { DateFormatPipe } from './date-format.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DropdownModule } from 'primeng/dropdown';
     CharacterCardListComponent,
     CharactersComponent,
     CharacterDetailsComponent,
+    DateFormatPipe,
   ],
   imports: [
     PaginatorModule,

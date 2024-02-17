@@ -1,9 +1,12 @@
-<p-card header="{{ chracterDetails.name }}" [style]="{ width: '300px' }">
+<p-card [style]="{ width: '270px',  }">
   <ng-template pTemplate="header">
     <img alt="Card" src="{{ chracterDetails.image }}" />
+    <div class="text-primary font-bold pt-1 text-lg text-center">
+      {{ chracterDetails.name }}
+    </div>
   </ng-template>
-  <p class="flex flex-column gap-3">
-    <span>Created: {{ chracterDetails.created }}</span>
+  <div class="flex flex-column gap-3">
+    <span>Created: {{ chracterDetails.created | customDateFormat }}</span>
     <span>Gender: {{ chracterDetails.gender }}</span>
     <span>Species: {{ chracterDetails.species }}</span>
     <span *ngIf="chracterDetails.location"
@@ -13,6 +16,29 @@
       >Origin: {{ chracterDetails.origin.name }}
     </span>
     <span *ngIf="chracterDetails.type">type: {{ chracterDetails.type }}</span>
-    <span>Status: {{ chracterDetails.status }}</span>
-  </p>
+    <span>
+      Status:
+      <span
+        *ngIf="chracterDetails.status"
+        [ngClass]="[
+          getStatusColor(chracterDetails.status),
+          'border-round-lg',
+          'px-2',
+          'text-white',
+          'font-semibold'
+        ]"
+        >{{ chracterDetails.status }}</span
+      >
+    </span>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-center mt-3">
+      <button
+        pButton
+        pRipple
+        (click)="router.navigateByUrl('/')"
+        label="Go to Home"
+      ></button>
+    </div>
+  </ng-template>
 </p-card>

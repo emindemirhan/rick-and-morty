@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { Paginator } from 'primeng/paginator';
 import { RickMortyCharacterListDto } from 'src/app/models/rick-morty-character-list-dto';
 import { SearchParamsDto } from 'src/app/models/search-params-dto';
 
@@ -23,7 +23,7 @@ export class CharacterCardListComponent implements OnInit {
     { label: 'Dead', value: 'Dead' },
     { label: 'Unknown', value: 'unknown' },
   ];
-
+  @ViewChild('paginator') paginator: Paginator | undefined;
   charactersFound: boolean = true;
   isSearchButtonDisabled: boolean = true;
   characters: RickMortyCharacterListDto = {} as RickMortyCharacterListDto;
@@ -58,7 +58,6 @@ export class CharacterCardListComponent implements OnInit {
   }
 
   onPageChange(event: any) {
-    console.log(event);
     this.searchParams.page = event.page;
     this.searchParams.page++;
 
@@ -67,6 +66,9 @@ export class CharacterCardListComponent implements OnInit {
   search() {
     this.searchParams.page = 0;
     this.getCharacters();
+    if (this.paginator) {
+      this.paginator.changePage(0);
+    }
   }
 
   clearFilters() {
@@ -79,6 +81,9 @@ export class CharacterCardListComponent implements OnInit {
     } as SearchParamsDto;
 
     this.getCharacters();
+    if (this.paginator) {
+      this.paginator.changePage(0);
+    }
     this.checkSearchButtonState();
   }
 

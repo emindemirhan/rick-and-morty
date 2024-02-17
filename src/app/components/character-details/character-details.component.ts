@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { RickMortyCharacterDto } from 'src/app/models/rick-morty-character-dto';
 import { RickMortyDetailDto } from 'src/app/models/rick-morty-detail-dto';
 import { RickMortyService } from 'src/app/services/rick-morty/rick-morty.service';
@@ -15,7 +15,8 @@ export class CharacterDetailsComponent implements OnInit {
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
-    private readonly rickMortyService: RickMortyService
+    private readonly rickMortyService: RickMortyService,
+    public readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -30,5 +31,17 @@ export class CharacterDetailsComponent implements OnInit {
         console.log(error);
       },
     });
+  }
+
+  getStatusColor(status: string): string {
+    if (status.toLowerCase() === 'alive') {
+      return 'bg-green-500';
+    } else if (status.toLowerCase() === 'dead') {
+      return 'bg-red-500';
+    } else if (status.toLowerCase() === 'unknown') {
+      return 'bg-orange-500'; // Set the appropriate class for orange
+    } else {
+      return '';
+    }
   }
 }
