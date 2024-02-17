@@ -23,7 +23,7 @@
 | /character |                           |          | Get All Characters |
 | /character | `?name=rick&status=alive` | `string` | Filter Characters. |
 
-#### Fetch item detail
+#### Fetch Character detail by Id
 
 ```http
   GET https://rickandmortyapi.com/api/character/${id}
