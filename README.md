@@ -1,27 +1,54 @@
-# RickMorty
+# Rick and Morty Characters List and Details Page
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
+## Project Features:
 
-## Development server
+- **Characters List:** Presents a list of all characters, allowing users to easily navigate and select a specific character.
+- **Character Detail View:** Displays detailed information about a selected Rick and Morty character.
+- **Episode List:** Shows a list of the last episodes the selected character appeared in, along with their information.
+- **Pagination:** Allows users to easily navigate through characters and episodes by dividing them into pages.
+- **Sorting:** Offers the ability to sort characters by name, type, gender, and status.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## API Usage
 
-## Code scaffolding
+#### Fetch all Characters
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```http
+  GET https://rickandmortyapi.com/api/character
+```
 
-## Build
+| Path       | Query                     | type     | Purpose of usage   |
+| :--------- | :------------------------ | :------- | :----------------- |
+| /character |                           |          | Get All Characters |
+| /character | `?name=rick&status=alive` | `string` | Filter Characters. |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+#### Fetch item detail
 
-## Running unit tests
+```http
+  GET https://rickandmortyapi.com/api/character/${id}
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+| Path       | Paramater | Query    | Purpose of usage              |
+| :--------- | :-------- | :------- | :---------------------------- |
+| /character | `id`      | `string` | Get Single Character Details. |
 
-## Running end-to-end tests
+## Route Structure
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The project consists of 2 pages. There is a `http://localhost:4200/character` characters list page in the main directory. There is character detail page for the each character details character/{id} `http://localhost:4200/character/1` directory.
 
-## Further help
+## Project Setup
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To run the project locally, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Navigate to the project directory using the command line.
+3. Run `npm install` to install the project dependencies.
+4. Run `npm start` to start the development server.
+5. Open your browser and visit `http://localhost:4200/` to view the application.
+
+### Clone The Project
+
+1. Clone the repository to your local machine using the following command:
+
+```bash
+  https://github.com/emindemirhan/rick-and-morty.git
+```

@@ -15,7 +15,7 @@ export class CharacterDetailsComponent implements OnInit {
   chracterDetails: RickMortyDetailDto = {} as RickMortyDetailDto;
   characterDetailsNotFound: boolean = false;
   episodes: RickMortyEpisodeDto[] = [];
-  pageSize = 10;
+  pageSize = 8;
   currentPage = 0;
   constructor(
     private readonly activatedRoute: ActivatedRoute,

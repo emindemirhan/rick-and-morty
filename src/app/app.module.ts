@@ -37,6 +37,7 @@ import { TableModule } from 'primeng/table';
     InputTextModule,
     DropdownModule,
     TableModule,
+    CardModule,
   ],
   providers: [RickMortyService],
   bootstrap: [AppComponent],

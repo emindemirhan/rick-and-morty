@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RickMortyCharacterListDto } from 'src/app/models/rick-morty-character-list-dto';
-import { RickMortyCharacterDto } from 'src/app/models/rick-morty-character-dto';
 import { RickMortyDetailDto } from 'src/app/models/rick-morty-detail-dto';
 import { SearchParamsDto } from 'src/app/models/search-params-dto';
 
