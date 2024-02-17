@@ -1,4 +1,4 @@
-<p-card [style]="{ width: '270px',  }">
+<p-card [style]="{ width: '270px' }" *ngIf="!characterDetailsNotFound">
   <ng-template pTemplate="header">
     <img alt="Card" src="{{ chracterDetails.image }}" />
     <div class="text-primary font-bold pt-1 text-lg text-center">
@@ -42,3 +42,14 @@
     </div>
   </ng-template>
 </p-card>
+
+<ng-container *ngIf="characterDetailsNotFound">
+  <div
+    class="bg-gray-100 text-3xl gap-3 flex flex-column justify-content-center min-h-screen align-items-center"
+  >
+    Character details not found.
+    <button pButton pRipple (click)="router.navigateByUrl('/')">
+      Go to Home Page
+    </button>
+  </div>
+</ng-container>

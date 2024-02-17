@@ -12,7 +12,7 @@ import { RickMortyService } from 'src/app/services/rick-morty/rick-morty.service
 export class CharacterDetailsComponent implements OnInit {
   characterId: number = 0;
   chracterDetails: RickMortyDetailDto = {} as RickMortyDetailDto;
-
+  characterDetailsNotFound: boolean = false;
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly rickMortyService: RickMortyService,
@@ -25,10 +25,12 @@ export class CharacterDetailsComponent implements OnInit {
     this.rickMortyService.findCharacterById(this.characterId).subscribe({
       next: (character) => {
         this.chracterDetails = character;
+        this.characterDetailsNotFound = false;
         console.log(this.chracterDetails);
       },
       error: (error) => {
         console.log(error);
+        this.characterDetailsNotFound = true;
       },
     });
   }
