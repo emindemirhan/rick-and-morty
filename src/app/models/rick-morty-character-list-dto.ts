@@ -1,4 +1,4 @@
-import { RickMortyInfoDto } from './rick-mort-info-dto';
+import { RickMortyInfoDto } from './rick-morty-info-dto';
 import { RickMortyCharacterDto } from './rick-morty-character-dto';
 
 export interface RickMortyCharacterListDto {

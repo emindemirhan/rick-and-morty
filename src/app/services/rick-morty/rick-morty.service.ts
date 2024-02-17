@@ -39,6 +39,12 @@ export class RickMortyService {
     });
   }
 
+  getEpisodesById(episodes: string[]): Observable<any> {
+    const episodeIds = episodes.map((url) => url.split('/').pop());
+
+    return this.http.get(`${this.baseUrl}/episode/${episodeIds.join(',')}`);
+  }
+
   findCharacterById(id: number): Observable<RickMortyDetailDto> {
     return this.http.get<RickMortyDetailDto>(`${this.characterListUrl}/${id}`);
   }

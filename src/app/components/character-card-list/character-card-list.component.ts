@@ -65,10 +65,10 @@ export class CharacterCardListComponent implements OnInit {
   }
   search() {
     this.searchParams.page = 0;
-    this.getCharacters();
     if (this.paginator) {
       this.paginator.changePage(0);
     }
+    this.getCharacters();
   }
 
   clearFilters() {

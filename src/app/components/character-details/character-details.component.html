@@ -1,49 +1,88 @@
-<p-card [style]="{ width: '270px' }" *ngIf="!characterDetailsNotFound">
-  <ng-template pTemplate="header">
-    <img alt="Card" src="{{ chracterDetails.image }}" />
-    <div class="text-primary font-bold pt-1 text-lg text-center">
-      {{ chracterDetails.name }}
-    </div>
-  </ng-template>
-  <div class="flex flex-column gap-3">
-    <span>Created: {{ chracterDetails.created | customDateFormat }}</span>
-    <span>Gender: {{ chracterDetails.gender }}</span>
-    <span>Species: {{ chracterDetails.species }}</span>
-    <span *ngIf="chracterDetails.location"
-      >Location: {{ chracterDetails.location.name }}</span
-    >
-    <span *ngIf="chracterDetails.origin"
-      >Origin: {{ chracterDetails.origin.name }}
-    </span>
-    <span *ngIf="chracterDetails.type">type: {{ chracterDetails.type }}</span>
-    <span>
-      Status:
-      <span
-        *ngIf="chracterDetails.status"
-        [ngClass]="[
-          getStatusColor(chracterDetails.status),
-          'border-round-lg',
-          'px-2',
-          'text-white',
-          'font-semibold'
-        ]"
-        >{{ chracterDetails.status }}</span
+<div
+  class="flex sm:flex-row flex-column justify-content-center gap-2"
+  *ngIf="!characterDetailsNotFound; else notFound"
+>
+  <p-card [style]="{ width: '270px' }">
+    <ng-template pTemplate="header">
+      <img alt="Card" src="{{ chracterDetails.image }}" />
+      <div class="text-primary font-bold pt-1 text-lg text-center">
+        {{ chracterDetails.name }}
+      </div>
+    </ng-template>
+    <div class="flex flex-column gap-3">
+      <span>Created: {{ chracterDetails.created | customDateFormat }}</span>
+      <span>Gender: {{ chracterDetails.gender }}</span>
+      <span>Species: {{ chracterDetails.species }}</span>
+      <span *ngIf="chracterDetails.location"
+        >Location: {{ chracterDetails.location.name }}</span
       >
-    </span>
-  </div>
-  <ng-template pTemplate="footer">
-    <div class="flex justify-content-center mt-3">
-      <button
-        pButton
-        pRipple
-        (click)="router.navigateByUrl('/')"
-        label="Go to Home"
-      ></button>
+      <span *ngIf="chracterDetails.origin"
+        >Origin: {{ chracterDetails.origin.name }}
+      </span>
+      <span *ngIf="chracterDetails.type">type: {{ chracterDetails.type }}</span>
+      <span>
+        Status:
+        <span
+          *ngIf="chracterDetails.status"
+          [ngClass]="[
+            getStatusColor(chracterDetails.status),
+            'border-round-lg',
+            'px-2',
+            'text-white',
+            'font-semibold'
+          ]"
+          >{{ chracterDetails.status }}</span
+        >
+      </span>
     </div>
-  </ng-template>
-</p-card>
+    <ng-template pTemplate="footer">
+      <div class="flex justify-content-center mt-3">
+        <button
+          pButton
+          pRipple
+          (click)="router.navigateByUrl('/')"
+          label="Go to Home"
+        ></button>
+      </div>
+    </ng-template>
+  </p-card>
+  <div class="text-center gap-3">
+    <h2 class="text-xl font-bold">
+      Last Episodes of
+      <span class="text-primary">{{ chracterDetails.name }}</span>
+    </h2>
+    <p-table
+      [title]="chracterDetails.name + ' Episodes'"
+      [value]="getPaginatedEpisodes()"
+      [tableStyle]="{ 'min-width': '50rem',  }"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Episode</th>
+          <th>Name</th>
+          <th>Created Date</th>
+          <th>Air Date</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-episode>
+        <tr>
+          <td>{{ episode.episode }}</td>
+          <td>{{ episode.name }}</td>
+          <td>{{ episode.created | customDateFormat }}</td>
+          <td>{{ episode.air_date }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <p-paginator
+      [rows]="pageSize"
+      [totalRecords]="episodes.length"
+      (onPageChange)="onPageChange($event)"
+    >
+    </p-paginator>
+  </div>
+</div>
 
-<ng-container *ngIf="characterDetailsNotFound">
+<ng-template #notFound>
   <div
     class="bg-gray-100 text-3xl gap-3 flex flex-column justify-content-center min-h-screen align-items-center"
   >
@@ -52,4 +91,4 @@
       Go to Home Page
     </button>
   </div>
-</ng-container>
+</ng-template>

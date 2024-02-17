@@ -55,7 +55,11 @@
     </div>
 
     <ng-container *ngIf="!charactersFound; else characterList">
-      <div>No characters found for the specified type.</div>
+      <div
+        class="flex justify-content-center align-items-center font-bold text-center text-3xl h-screen"
+      >
+        No characters found for the specified type.
+      </div>
     </ng-container>
 
     <ng-template #characterList>
@@ -71,14 +75,14 @@
         >
         </app-character-card>
       </div>
+      <p-paginator
+        #paginator
+        class="mx-auto"
+        (onPageChange)="onPageChange($event)"
+        [first]="0"
+        [rows]="20"
+        [totalRecords]="characters.info ? characters.info.count : 0"
+      ></p-paginator>
     </ng-template>
-    <p-paginator
-      #paginator
-      class="mx-auto"
-      (onPageChange)="onPageChange($event)"
-      [first]="0"
-      [rows]="20"
-      [totalRecords]="characters.info ? characters.info.count : 0"
-    ></p-paginator>
   </div>
 </div>

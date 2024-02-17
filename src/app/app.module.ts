@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { DateFormatPipe } from './date-format.pipe';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { DateFormatPipe } from './date-format.pipe';
     BrowserAnimationsModule,
     InputTextModule,
     DropdownModule,
+    TableModule,
   ],
   providers: [RickMortyService],
   bootstrap: [AppComponent],

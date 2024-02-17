@@ -21,7 +21,7 @@ export class CharacterCardComponent {
     } else if (status.toLowerCase() === 'dead') {
       return 'bg-red-500';
     } else if (status.toLowerCase() === 'unknown') {
-      return 'bg-orange-500'; // Set the appropriate class for orange
+      return 'bg-orange-500';
     } else {
       return '';
     }
