@@ -1,20 +1,83 @@
-<div class="flex flex-wrap gap">
-  <app-character-card
-    *ngFor="let item of characters.results"
-    [name]="item.name"
-    [status]="item.status"
-    [species]="item.species"
-    [gender]="item.gender"
-    [image]="item.image"
-    [id]="item.id"
+<div class="flex flex-column justify-content-center align-items-center">
+  <div
+    class="flex flex-wrap flex-column gap-2 justify-content-end bg-gray-300 mb-2 p-3 border-round-lg w-10"
   >
-  </app-character-card>
-</div>
+    <div
+      class="flex flex-wrap justify-content-center xl:justify-content-end gap-2"
+    >
+      <input
+        type="text"
+        pInputText
+        placeholder="Character Name"
+        [(ngModel)]="searchParams.name"
+        (keyup.enter)="search()"
+        (ngModelChange)="checkSearchButtonState()"
+      />
 
-<p-paginator
-  class="mx-auto"
-  (onPageChange)="onPageChange($event)"
-  [first]="0"
-  [rows]="20"
-  [totalRecords]="characters.info ? characters.info.count : 0"
-></p-paginator>
+      <p-dropdown
+        [(ngModel)]="searchParams.gender"
+        [options]="genderOptions"
+        placeholder="Gender"
+        (onChange)="checkSearchButtonState()"
+      >
+      </p-dropdown>
+
+      <p-dropdown
+        [(ngModel)]="searchParams.status"
+        [options]="statusOptions"
+        placeholder="Status"
+        (onChange)="checkSearchButtonState()"
+      >
+      </p-dropdown>
+
+      <input
+        type="text"
+        pInputText
+        placeholder="Type"
+        [(ngModel)]="searchParams.type"
+        (input)="checkSearchButtonState()"
+      />
+
+      <button
+        pButton
+        pRipple
+        label="Search"
+        [disabled]="isSearchButtonDisabled"
+        (click)="search()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Clear"
+        class="p-button-danger"
+        (click)="clearFilters()"
+      ></button>
+    </div>
+
+    <ng-container *ngIf="!charactersFound; else characterList">
+      <div>No characters found for the specified type.</div>
+    </ng-container>
+
+    <ng-template #characterList>
+      <div class="flex flex-wrap justify-content-center gap-4">
+        <app-character-card
+          *ngFor="let item of characters.results"
+          [name]="item.name"
+          [status]="item.status"
+          [species]="item.species"
+          [gender]="item.gender"
+          [image]="item.image"
+          [id]="item.id"
+        >
+        </app-character-card>
+      </div>
+    </ng-template>
+    <p-paginator
+      class="mx-auto"
+      (onPageChange)="onPageChange($event)"
+      [first]="0"
+      [rows]="20"
+      [totalRecords]="characters.info ? characters.info.count : 0"
+    ></p-paginator>
+  </div>
+</div>

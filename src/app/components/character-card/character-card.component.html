@@ -1,20 +1,35 @@
-<p-card
-  header="{{ name }}"
-  subheader="{{ status }}"
-  [style]="{ width: '300px' }"
->
+<p-card [style]="{ width: '270px',  }">
   <ng-template pTemplate="header">
     <img alt="Card" src="{{ image }}" />
+    <div class="text-primary font-bold pt-1 text-lg text-center">
+      {{ name }}
+    </div>
   </ng-template>
-  <p class="flex flex-column gap-3">
-    <span>Species: {{ species }}</span>
+  <div class="flex flex-column gap-3 h-3rem">
+    <span class="white-space-nowrap">Species: {{ species }}</span>
     <span>Gender: {{ gender }}</span>
-  </p>
+    <span>
+      Status:
+      <span
+        [ngClass]="[
+          getStatusColor(status),
+          'border-round-lg',
+          'px-2',
+          'text-white',
+          'font-semibold'
+        ]"
+        >{{ status }}</span
+      >
+    </span>
+  </div>
   <ng-template pTemplate="footer">
-    <p-button
-      (onClick)="router.navigateByUrl('character/' + id)"
-      label="Details"
-      icon="pi pi-check"
-    ></p-button>
+    <div class="flex justify-content-center mt-3">
+      <button
+        pButton
+        pRipple
+        (click)="router.navigateByUrl('character/' + id)"
+        label="Details"
+      ></button>
+    </div>
   </ng-template>
 </p-card>

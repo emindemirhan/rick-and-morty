@@ -5,7 +5,7 @@ import { CharacterDetailsComponent } from './components/character-details/charac
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', redirectTo: '/character', pathMatch: 'full' },
   { path: 'character', component: CharactersComponent },
   { path: 'character/:id', component: CharacterDetailsComponent },
 ];

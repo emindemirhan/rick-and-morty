@@ -11,6 +11,9 @@ import { RickMortyService } from './services/rick-morty/rick-morty.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CharactersComponent } from './components/characters/characters.component';
 import { CharacterDetailsComponent } from './components/character-details/character-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { CharacterDetailsComponent } from './components/character-details/charac
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    DropdownModule,
   ],
   providers: [RickMortyService],
   bootstrap: [AppComponent],

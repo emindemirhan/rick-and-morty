@@ -15,4 +15,15 @@ export class CharacterCardComponent {
   @Input() id: number = 0;
 
   constructor(public readonly router: Router) {}
+  getStatusColor(status: string): string {
+    if (status.toLowerCase() === 'alive') {
+      return 'bg-green-500';
+    } else if (status.toLowerCase() === 'dead') {
+      return 'bg-red-500';
+    } else if (status.toLowerCase() === 'unknown') {
+      return 'bg-orange-500'; // Set the appropriate class for orange
+    } else {
+      return '';
+    }
+  }
 }
